@@ -5,6 +5,10 @@ import { api } from "../../../../convex/_generated/api";
 import Link from "next/link";
 import { Blocks, Code2, Sparkles } from "lucide-react";
 import { SignedIn } from "@clerk/nextjs";
+import ThemeSelector from "./ThemeSelector";
+import LanguageSelector from "./LanguageSelector";
+import RunButton from "./RunButton";
+import HeaderProfileBtn from "./HeaderProfileBtn";
 
 const Header = async () => {
   const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
@@ -39,7 +43,7 @@ const Header = async () => {
 
             <div className="flex flex-col">
               <span className="block text-lg font-semibold bg-gradient-to-r from-blue-400 via-blue-300 to-purple-400 text-transparent bg-clip-text">
-                CodeCraft
+                CoderPro
               </span>
               <span className="block text-xs text-blue-400/60 font-medium">
                 Interactive Code Editor
@@ -65,12 +69,11 @@ const Header = async () => {
             </Link>
           </nav>
         </div>
-
         <div className="flex items-center gap-4">
-          {/* <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3">
             <ThemeSelector />
             <LanguageSelector hasAccess={Boolean(convexUser?.isPro)} />
-          </div> */}
+          </div>
 
           {!convexUser?.isPro && (
             <Link
@@ -86,10 +89,12 @@ const Header = async () => {
             </Link>
           )}
 
-          <SignedIn>{/* <RunButton /> */}</SignedIn>
+          <SignedIn>
+            <RunButton />
+          </SignedIn>
 
           <div className="pl-3 border-l border-gray-800">
-            {/* <HeaderProfileBtn /> */}
+            <HeaderProfileBtn />
           </div>
         </div>
       </div>
